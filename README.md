@@ -1,6 +1,6 @@
 # Koinx backend assignment 
 ## Render(deployed link)=> https://koinx-backend-assignment-tccl.onrender.com
-
+## routes => /api/stats/{id_of_coin} for stats , /api/deviation/{id_of_coin} for deviation
 ## Installation
 
 1. Clone the repository
