@@ -10,7 +10,7 @@ const {
 dotenv.config();
 
 const app = express();
-const port = process.env.port || 8000;
+const port = process.env.PORT || 8000;
 
 connectDB(process.env.MONGODB_URL)
   .then(() => console.log("Db connected successfully"))
@@ -20,8 +20,6 @@ cron.schedule("0 */2 * * *", () => {
   console.log("Fetching and saving coin data to DB");
   handleFetchAllCoinsDataAndPushToDb();
 });
-
-
 
 app.use("/api", apiRouter);
 
