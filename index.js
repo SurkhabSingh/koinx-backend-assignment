@@ -16,15 +16,12 @@ connectDB(process.env.MONGODB_URL)
   .then(() => console.log("Db connected successfully"))
   .catch((err) => console.log("Error connecting to DB:", err));
 
-// cron.schedule("0 */2 * * *", () => {
-//   console.log("Fetching and saving coin data to DB");
-//   handleFetchAllCoinsDataAndPushToDb();
-// });
-
-cron.schedule("* * * * *", () => {
+cron.schedule("0 */2 * * *", () => {
   console.log("Fetching and saving coin data to DB");
   handleFetchAllCoinsDataAndPushToDb();
 });
+
+
 
 app.use("/api", apiRouter);
 
