@@ -1,6 +1,8 @@
 # Koinx backend assignment 
 ## Render(deployed link)
+
 https://koinx-backend-assignment-tccl.onrender.com/api/stats/{id_of_coin} for stats
+
 https://koinx-backend-assignment-tccl.onrender.com/api/deviation/{id_of_coin} for deviation 
 ## Installation
 
