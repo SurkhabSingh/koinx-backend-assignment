@@ -1,4 +1,6 @@
 # Koinx backend assignment 
+## Render(deployed link)=> https://koinx-backend-assignment-tccl.onrender.com
+
 ## Installation
 
 1. Clone the repository
@@ -21,7 +23,6 @@ Running the Application
 
 Start the development server: npm start
 
-Render(deployed link)=>
 
 
 
