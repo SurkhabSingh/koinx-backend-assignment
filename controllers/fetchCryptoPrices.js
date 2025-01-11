@@ -61,11 +61,12 @@ const handleCalculateStandardDeviation = (prices) => {
 };
 
 const pingServer = () => {
-  const url = "https://koinx-backend-assignment-tccl.onrender.com";
+  const url =
+    "https://koinx-backend-assignment-tccl.onrender.com/api/stats/bitcoin";
   axios
     .get(url)
     .then(() => console.log(`Server pinged: ${url}`))
-    .catch((err) => console.log("Error pinging server", err));
+    .catch((err) => console.log("Error pinging server"));
 };
 
 module.exports = {
