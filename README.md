@@ -1,4 +1,9 @@
 # Koinx backend assignment 
+## Render(deployed link)
+
+https://koinx-backend-assignment-tccl.onrender.com/api/stats/{id_of_coin} for stats
+
+https://koinx-backend-assignment-tccl.onrender.com/api/deviation/{id_of_coin} for deviation 
 ## Installation
 
 1. Clone the repository
@@ -20,6 +25,7 @@ COINGECKO_API_KEY= your_api_key
 Running the Application
 
 Start the development server: npm start
+
 
 
 
