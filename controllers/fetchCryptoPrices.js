@@ -60,8 +60,17 @@ const handleCalculateStandardDeviation = (prices) => {
   return Math.sqrt(variance);
 };
 
+const pingServer = () => {
+  const url = "https://koinx-backend-assignment-tccl.onrender.com";
+  axios
+    .get(url)
+    .then(() => console.log(`Server pinged: ${url}`))
+    .catch((err) => console.log("Error pinging server", err));
+};
+
 module.exports = {
   handleFetchAllCoinsDataAndPushToDb,
   handleFetchSingleCoinData,
   handleCalculateStandardDeviation,
+  pingServer,
 };

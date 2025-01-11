@@ -5,6 +5,7 @@ const apiRouter = require("./routes/coinRoutes");
 const { connectDB } = require("./connectDB");
 const {
   handleFetchAllCoinsDataAndPushToDb,
+  pingServer,
 } = require("./controllers/fetchCryptoPrices");
 
 dotenv.config();
@@ -15,6 +16,9 @@ const port = process.env.PORT || 8000;
 connectDB(process.env.MONGODB_URL)
   .then(() => console.log("Db connected successfully"))
   .catch((err) => console.log("Error connecting to DB:", err));
+
+//for keeping the server up
+setInterval(pingServer, 60000);
 
 cron.schedule("0 */2 * * *", () => {
   console.log("Fetching and saving coin data to DB");
