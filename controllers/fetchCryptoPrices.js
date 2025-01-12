@@ -1,6 +1,9 @@
 require("dotenv").config();
 const axios = require("axios");
+const axiosRetry = require("axios-retry").default;
 const modelDB = require("../models/cryptoPrice");
+
+axiosRetry(axios, { retries: 3, retryDelay: axiosRetry.exponentialDelay });
 
 const coinIds = ["bitcoin", "ethereum", "matic-network"];
 
@@ -16,6 +19,7 @@ const handleFetchSingleCoinData = async (coinId, saveToDB = false) => {
   };
 
   try {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     const response = await axios(url, options);
     const data = response.data;
 
@@ -29,7 +33,7 @@ const handleFetchSingleCoinData = async (coinId, saveToDB = false) => {
           change24h: data.market_data.price_change_24h,
         })
         .then(() => console.log(`successfully saved ${data.id} to DB`))
-        .catch((err) => console.log("error", err));
+        .catch((error) => console.error("error", error.code));
     }
 
     return {
@@ -40,7 +44,13 @@ const handleFetchSingleCoinData = async (coinId, saveToDB = false) => {
       change24h: data.market_data.price_change_24h,
     };
   } catch (error) {
-    console.error(`Error fetching data for ${coinId}:`, error);
+    if (error.response && error.response.status === 429) {
+      console.log("Rate limit hit, retrying...");
+    } else if (error.response && error.response.status === 400) {
+      console.log("Bad request, check coinId and request format");
+    } else {
+      console.error(`Error fetching data for ${coinId}`, error);
+    }
   }
 };
 
@@ -66,7 +76,7 @@ const pingServer = () => {
   axios
     .get(url)
     .then(() => console.log(`Server pinged: ${url}`))
-    .catch((err) => console.log("Error pinging server"));
+    .catch((error) => console.error("Error pinging server", error.code));
 };
 
 module.exports = {

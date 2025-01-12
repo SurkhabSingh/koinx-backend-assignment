@@ -17,7 +17,7 @@ connectDB(process.env.MONGODB_URL)
   .then(() => console.log("Db connected successfully"))
   .catch((err) => console.log("Error connecting to DB:", err));
 
-  //for keeping the server up
+//for keeping the server up
 setInterval(pingServer, 60000);
 
 cron.schedule("0 */2 * * *", () => {
